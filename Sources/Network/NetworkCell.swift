@@ -1,5 +1,5 @@
 //
-//  DebugTool.swift
+//  DotzuX.swift
 //  demo
 //
 //  Created by liman on 26/11/2017.
@@ -26,7 +26,7 @@ class NetworkCell: UITableViewCell {
     var httpModel: HttpModel? {
         didSet {
             
-            guard let serverURL = DebugToolSettings.shared.serverURL else {return}
+            guard let serverURL = DotzuXSettings.shared.serverURL else {return}
             
             //域名
             requestUrlTextView.text = httpModel?.url.absoluteString

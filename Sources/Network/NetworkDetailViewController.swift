@@ -1,5 +1,5 @@
 //
-//  DebugTool.swift
+//  DotzuX.swift
 //  demo
 //
 //  Created by liman on 26/11/2017.
@@ -20,7 +20,7 @@ class NetworkDetailViewController: UITableViewController {
     var justCancelCallback:(() -> Void)?
     
     static func instanceFromStoryBoard() -> NetworkDetailViewController {
-        let storyboard = UIStoryboard(name: "Network", bundle: Bundle(for: DebugTool.self))
+        let storyboard = UIStoryboard(name: "Network", bundle: Bundle(for: DotzuX.self))
         return storyboard.instantiateViewController(withIdentifier: "NetworkDetailViewController") as! NetworkDetailViewController
     }
     
@@ -206,7 +206,7 @@ class NetworkDetailViewController: UITableViewController {
     //MARK: - UITableViewDelegate
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         
-        guard let serverURL = DebugToolSettings.shared.serverURL else {return 0}
+        guard let serverURL = DotzuXSettings.shared.serverURL else {return 0}
         let detailModel = detailModels[indexPath.row]
         
         if detailModel.blankContent == "..." {
@@ -262,6 +262,6 @@ class NetworkDetailViewController: UITableViewController {
     
     //MARK: - target action
     @IBAction func close(_ sender: UIBarButtonItem) {
-        (self.navigationController as! DebugToolNavigationController).exit()
+        (self.navigationController as! DotzuXNavigationController).exit()
     }
 }

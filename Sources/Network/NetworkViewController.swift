@@ -1,5 +1,5 @@
 //
-//  DebugTool.swift
+//  DotzuX.swift
 //  demo
 //
 //  Created by liman on 26/11/2017.
@@ -51,7 +51,7 @@ class NetworkViewController: UIViewController, UITableViewDataSource, UITableVie
         self.models = (HttpDatasource.shared().httpModels as NSArray as? [HttpModel])
         self.cacheModels = self.models
         
-        self.searchLogic(DebugToolSettings.shared.networkSearchWord ?? "")
+        self.searchLogic(DotzuXSettings.shared.networkSearchWord ?? "")
 
         dispatch_main_async_safe { [weak self] in
             self?.tableView.reloadData()
@@ -101,12 +101,12 @@ class NetworkViewController: UIViewController, UITableViewDataSource, UITableVie
         setNeedsStatusBarAppearanceUpdate()
         
         
-        NotificationCenter.default.addObserver(self, selector: #selector(reloadHttp_notification(_ :)), name: NSNotification.Name("reloadHttp_DebugTool"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(reloadHttp_notification(_ :)), name: NSNotification.Name("reloadHttp_DotzuX"), object: nil)
         
         tableView.dataSource = self
         tableView.delegate = self
         searchBar.delegate = self
-        searchBar.text = DebugToolSettings.shared.networkSearchWord
+        searchBar.text = DotzuXSettings.shared.networkSearchWord
         tableView.tableFooterView = UIView()
         
         //hide searchBar icon
@@ -141,7 +141,7 @@ class NetworkViewController: UIViewController, UITableViewDataSource, UITableVie
     //MARK: - UITableViewDelegate
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         
-        guard let serverURL = DebugToolSettings.shared.serverURL else {return 0}
+        guard let serverURL = DotzuXSettings.shared.serverURL else {return 0}
         let model = models?[indexPath.row]
         var height: CGFloat = 0.0
         
@@ -269,7 +269,7 @@ class NetworkViewController: UIViewController, UITableViewDataSource, UITableVie
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String)
     {
-        DebugToolSettings.shared.networkSearchWord = searchText
+        DotzuXSettings.shared.networkSearchWord = searchText
         searchLogic(searchText)
         
         dispatch_main_async_safe { [weak self] in
